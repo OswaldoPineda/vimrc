@@ -28,7 +28,7 @@ set tabstop=2
 set softtabstop=2               " Number of spaces per Tab
 set shiftwidth=2                " Number of auto-indent spaces
 "set line at 80 column
-set colorcolumn=80
+set colorcolumn=100
 
 " move whiout Ctr+W
 nmap <C-h> <C-w>h
@@ -36,6 +36,8 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
+"change ESC for jh
+inoremap jh <Esc>
 " css autocomplete
 " crl x + crl o
 filetype plugin on
@@ -60,8 +62,12 @@ set pastetoggle=<F2>            " toogle auto-indenting for code paste
 set clipboard=unnamedplus
 
 "config indentation
-let g:indentLine_color_term = 0
+let g:indentLine_enabled = 1
+let g:indentLine_color_term = 239
 let g:indentLine_char = '|'
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indentLine_concealcursor = 'inc'
+let g:indentLine_conceallevel = 2
 "control P
 let g:ctrlp_user_command = ['.git/',
                 \ 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] "Pluggin de controlp ignore  archivos de git
@@ -89,6 +95,7 @@ set hlsearch                    " Highlight all search results
 
 " CtrlP auto cache clearing.
 " ----------------------------------------------------------------------------
+let g:ctrlp_show_hidden = 1
 function! SetupCtrlP()
   if exists("g:loaded_ctrlp") && g:loaded_ctrlp
     augroup CtrlPExtension
@@ -106,3 +113,23 @@ autocmd BufWritePre * :%s/\s\+$//e
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 
+"config to can copy
+vnoremap <C-c> "*y
+set clipboard=unnamed
+map <leader>c :.w !pbcopy<CR><CR>
+map <leader>p :r !pbpaste<CR>
+map <leader>n :NERDTreeToggle<CR>
+map <leader>w :w<CR>
+map <leader>q :q<CR>
+map <leader>s :sort<CR>
+" map <leader>h :noh<CR>
+map <leader>h :vertical resize +10<CR>
+map <leader>l :vertical resize -10<CR>
+map <leader>j :resize +10<CR>
+map <leader>k :resize -10<CR>
+map <leader>tn :tabnext<CR>
+map <leader>tp :tabprevious<CR>
+
+let g:airline#extensions#branch#enabled = 0
+set conceallevel=1
+let g:indentLine_conceallevel=1
