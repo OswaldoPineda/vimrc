@@ -20,6 +20,8 @@ Plug 'mattn/emmet-vim' "autocomplete html tags
 Plug 'jiangmiao/auto-pairs' "pairs
 Plug 'tpope/vim-commentary' "comment lines
 Plug 'othree/yajs.vim'
+Plug 'airblade/vim-gitgutter' "show git changes
+Plug 'tpope/vim-surround' " surround content between
 call plug#end()
 
 set autoindent                  " Auto-indent new lines
@@ -127,9 +129,20 @@ map <leader>h :vertical resize +10<CR>
 map <leader>l :vertical resize -10<CR>
 map <leader>j :resize +10<CR>
 map <leader>k :resize -10<CR>
+map <leader>nt :tabedit<CR>
+map <leader>tq :tabclose<CR>
 map <leader>tn :tabnext<CR>
 map <leader>tp :tabprevious<CR>
 
 let g:airline#extensions#branch#enabled = 0
 set conceallevel=1
 let g:indentLine_conceallevel=1
+
+" git status config
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+set statusline+=%{GitStatus()}
+
+let NERDTreeShowHidden=1
