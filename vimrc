@@ -23,6 +23,9 @@ Plug 'othree/yajs.vim'
 Plug 'airblade/vim-gitgutter' "show git changes
 Plug 'tpope/vim-surround' " surround content between
 Plug 'rking/ag.vim'
+Plug 'leafgarland/typescript-vim' " for typescript highlight
+Plug 'peitalin/vim-jsx-typescript' " for typescript highlight
+
 call plug#end()
 
 set autoindent                  " Auto-indent new lines
